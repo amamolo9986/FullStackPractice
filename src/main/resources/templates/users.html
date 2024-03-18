@@ -7,6 +7,9 @@
 
 <body>
     <h1>Users</h1>
+    <form action="/register">
+        <button>Register</button>
+    </form><br/>
 
     <div th:each="user : ${users}"> <!--iterates through users on model -->
         <span th:inline="text">

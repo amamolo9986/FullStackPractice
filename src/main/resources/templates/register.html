@@ -15,10 +15,14 @@
         </div>
         <div>
             Full Name: <input type="text" th:field="${user.name}"/>
-        </div>
+        </div><br/>
         <div>
             <input type="submit" value="Create Account"/>
+            <form action="/users">
+                <button>Back</button>
+            </form><br/>
         </div>
+        
     </form>
 </body>
 </html>
