@@ -1,6 +1,5 @@
 package com.coderscampus.hibernatepractice.web;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -29,17 +28,17 @@ public class UserController {
 		return "users";
 	}
 	
-	@GetMapping("/user/{userId}")
+	@GetMapping("/users/{userId}")
 	public String findById(ModelMap model, @PathVariable Long userId) {
 		User user = userService.findById(userId);
 		model.put("user", user);
 		return "user";
 	}
 	
-	@PostMapping("/user/{userId}")
+	@PostMapping("/users/{userId}")
 	public String postUpdatedUser(User user) {
 		user = userService.saveUser(user);
-		return "redirect:/user/" + user.getUserId();
+		return "redirect:/users/" + user.getUserId();
 	}
 	
 	@GetMapping("/register")
@@ -55,7 +54,7 @@ public class UserController {
 		return "redirect:/users";
 	}
 	
-	@PostMapping("/user/{userId}/delete")
+	@PostMapping("/users/{userId}/delete")
 	public String deleteUser(@PathVariable Long userId) {
 		userService.deleteUser(userId);
 		return "redirect:/users";

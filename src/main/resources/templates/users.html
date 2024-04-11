@@ -13,7 +13,7 @@
 
     <div th:each="user : ${users}"> <!--iterates through users on model -->
         <span th:inline="text">
-           <a th:href="@{/user/{userId}(userId=${user.userId})}">[[${user.userId}]]</a>
+           <a th:href="@{/users/{userId}(userId=${user.userId})}">[[${user.userId}]]</a>
         </span><br /> <!-- spits out userId and makes it clickable. -->
         Name: <span th:text="${user.name}"></span><br /> <!-- spits out name, username, etc. -->
         Username: <span th:text="${user.username}"></span><br />

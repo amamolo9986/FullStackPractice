@@ -1,5 +1,6 @@
 package com.coderscampus.hibernatepractice.domain;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +23,8 @@ public class User {
 	private String username;
 	private String password;
 	private String name;
+	private LocalDate createdDate;
+	//may delete this^^
 	@ManyToMany
 	@JoinTable(name = "user_account", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "account_id"))
 	private List<Account> accounts = new ArrayList<>();
@@ -60,12 +63,28 @@ public class User {
 		this.name = name;
 	}
 
+	public LocalDate getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(LocalDate createdDate) {
+		this.createdDate = createdDate;
+	}
+
 	public List<Account> getAccounts() {
 		return accounts;
 	}
 
-	public void setAccounts(List<Account> accounts) {
+	public void setAccounts(List<Account> accounts) { 
 		this.accounts = accounts;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 
 	@Override

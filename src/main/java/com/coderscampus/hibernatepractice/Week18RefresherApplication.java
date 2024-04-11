@@ -2,6 +2,9 @@ package com.coderscampus.hibernatepractice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.jpa.repository.Query;
+
+import com.coderscampus.hibernatepractice.domain.User;
 
 @SpringBootApplication
 public class Week18RefresherApplication {
@@ -68,13 +71,60 @@ public class Week18RefresherApplication {
 	//thats pretty much it. then on the child side we have the relationship annotation, and we have 
 	//a new annotation, @MapsId. This is what will allow us to create a column as a PK as well as a FK.
 	
-	//Unit 19 Vid 3 shows how to read the console select statements at 4 minute mark.
+	//Unit 19
+	
+	//Vid 3 shows how to read the console select statements at 4 minute mark.
 	
 	//We basically know all that he's going to go over up until Fetching and Cascade types.
 	
 	//Vid 4 goes over basic thymeleaf stuff, action="" is *where* we're sending the data, method=post, 
 	//stuff like that. A lot of good things in this video! th:field is how we map front end to back end.
 	//Need to map strings? type="text"
+	
+	//Vid 7 - Query Methods 
+	//What if we want to use a method that isnt built into JPA Repository?
+	//There is a built in method naming convention that allows to query whatever we like, and 
+	//this naming convention allows us to access our database. Its Javas equivalent of a select
+	//statement.
+
+	//So we want to take this query and return a username, but we can only do that if the user is unique
+	//because we want to return only one user. You see? Search a username, get a user. But in order to
+	//execute this, we need to add a constraint that allows for only unique usernames. So we need to 
+	//add this validation upon the creation of a user. We arent writing this code however. But, if we 
+	//have more than one username and only return a User object, it will crash. So we will return a 
+	//collection to prevent the crash. not ideal but it will work in the sense of the code not crashing.
+
+	//Vid 8 Implementing Query Method
+	//i left a note in the service to indicate where the query methods are.
+	//Trevor does a mock implementation of the query methods that we created from previous video at minute
+	//3 by implementing the find by username method in the /users controller and hard codes a username 
+	//thats in the DB. so when he hits that endpoint, the hardcoded username is the only one thats shown. 
+	//I wont do this because it feels like a waste, but i will keep this here for reference in case i want 
+	//to go back and look.
+		
+	//@ 7 min he does this same example but with the name and username method. he's also hard coding dates
+	//in the database for our datetime. he's adding them to show how we can search the date with the 
+	//query method. Idk if i want to add this in the DB, but i'm just writing all of this down.
+	//between use is 14 min to the end
+	
+	//There is also a resource on query method formats on the spring website that he talks about - 14 min.
+	//remember that all of this is still in the first week 18
+	
+	//Vid 9 Custom Query
+	//The naming conventions for the regular query methods dont work, you need to create a more 
+	//advanced query.
+	
+	//for this, the name doesnt matter, but we should still name by convention for consistency sake.
+	//Here is the example we'll use: User findOneUSerByUsername(String username);
+	//So how does this work? Since our naming convention doesnt connect us to the DB here? Well we 
+	//have to annotate this. we say @Query() and within the parameter we add a string that we then
+	//user to specify the query. Note that we wont be using native SQL, it will be slightly modified
+	//to tailor to Hibernate. Its called JPQL (Java Persistence Querying Language)
+	// >>>> @Query("select u from User u where username = :username") 
+	//We use alias's, no star, and we dont reference the column we reference the domain.
+	
+	//Vid 10 Eager vs Lazy Fetching
+	//
 	
 }
 
