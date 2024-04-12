@@ -124,7 +124,20 @@ public class Week18RefresherApplication {
 	//We use alias's, no star, and we dont reference the column we reference the domain.
 	
 	//Vid 10 Eager vs Lazy Fetching
-	//
+	//So how does a Table fetch data for its respective relationships?
+	
+	//For example, One to One relationships Eagerly fetch data. What that means is that any 
+	//time you fetch the parent object, the child object is also retrieved by default. So if you have a 
+	//user object that contains an address, when you fetch a user, the address is also retrieved.
+	
+	//Now we can add our fetch type to lazy in the one to one relationship, but that doesnt really do
+	//much, we would have to go and re design our table entirely. Trevor doesnt go over this because
+	//one to one relationships dont happen often. But we will go over _toMany
+	
+	//_ to Many fetch type default is a lazy fetch, which means that it will only be fetched when
+	//explicitly called.
+	
+	//Lazy is better. Only grab the data if you need it.
 	
 }
 

@@ -9,15 +9,18 @@
     <h1>Users</h1>
     <form action="/register">
         <button>Register</button>
-    </form><br/>
+    </form><br />
 
     <div th:each="user : ${users}"> <!--iterates through users on model -->
         <span th:inline="text">
-           <a th:href="@{/users/{userId}(userId=${user.userId})}">[[${user.userId}]]</a>
+            <a th:href="@{/users/{userId}(userId=${user.userId})}">[[${user.userId}]]</a>
         </span><br /> <!-- spits out userId and makes it clickable. -->
         Name: <span th:text="${user.name}"></span><br /> <!-- spits out name, username, etc. -->
         Username: <span th:text="${user.username}"></span><br />
         Password: <span th:text="${user.password}"></span><br />
+        Accounts: <div th:each="account: ${user.accounts}">
+            <span th:text="${account.accountName}"></span>
+        </div>
         <hr />
     </div>
 

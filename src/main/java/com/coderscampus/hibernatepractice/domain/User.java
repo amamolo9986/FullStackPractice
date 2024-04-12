@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -26,7 +27,9 @@ public class User {
 	private LocalDate createdDate;
 	//may delete this^^
 	@ManyToMany
-	@JoinTable(name = "user_account", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "account_id"))
+	@JoinTable(name = "user_account", 
+			   joinColumns = @JoinColumn(name = "user_id"), 
+			   inverseJoinColumns = @JoinColumn(name = "account_id"))
 	private List<Account> accounts = new ArrayList<>();
 	@OneToOne(mappedBy = "user")
 	private Address address;
