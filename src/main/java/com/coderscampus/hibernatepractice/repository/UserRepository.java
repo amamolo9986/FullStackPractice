@@ -2,6 +2,7 @@ package com.coderscampus.hibernatepractice.repository;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -25,4 +26,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	//Custom Query example
 	@Query("select u from User u where username = :username")
 	User findOneUserByUsername(String username);
+	
+	@Query("select u from User u"
+			+ " left join fetch u.accounts"
+			+ " left join fetch u.address")
+	Set<User> findAllOverridden();
 }

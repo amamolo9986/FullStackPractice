@@ -3,6 +3,7 @@ package com.coderscampus.hibernatepractice.service;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.stereotype.Service;
 
@@ -19,8 +20,8 @@ public class UserService {
 		this.userRepo = userRepo;
 	}
 
-	public List<User> findAll(){
-		return userRepo.findAll();
+	public Set<User> findAllOverridden(){
+		return userRepo.findAllOverridden();
 	}
 	
 	public User findById(Long userId) {

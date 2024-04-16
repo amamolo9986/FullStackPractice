@@ -1,6 +1,6 @@
 package com.coderscampus.hibernatepractice.web;
 
-import java.util.List;
+import java.util.Set;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -23,7 +23,7 @@ public class UserController {
 
 	@GetMapping("/users")
 	public String getAllUsers(ModelMap model) {
-		List<User> users = userService.findAll();
+		Set<User> users = userService.findAllOverridden();
 		model.put("users", users);
 		return "users";
 	}
