@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -31,7 +32,8 @@ public class User {
 			   joinColumns = @JoinColumn(name = "user_id"), 
 			   inverseJoinColumns = @JoinColumn(name = "account_id"))
 	private List<Account> accounts = new ArrayList<>();
-	@OneToOne(mappedBy = "user")
+	@OneToOne(mappedBy = "user", cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE}, 
+			  orphanRemoval = true)
 	private Address address;
 
 	public Long getUserId() {

@@ -7,17 +7,22 @@ import java.util.Set;
 
 import org.springframework.stereotype.Service;
 
+import com.coderscampus.hibernatepractice.domain.Account;
+import com.coderscampus.hibernatepractice.domain.Address;
 import com.coderscampus.hibernatepractice.domain.User;
+import com.coderscampus.hibernatepractice.repository.AccountRepository;
 import com.coderscampus.hibernatepractice.repository.UserRepository;
 
 @Service
 public class UserService {
 	
 	private UserRepository userRepo;
+	private AccountRepository accountRepo;
 
-	public UserService(UserRepository userRepo) {
+	public UserService(UserRepository userRepo, AccountRepository accountRepo) {
 		super();
 		this.userRepo = userRepo;
+		this.accountRepo = accountRepo;
 	}
 
 	public Set<User> findAllOverridden(){
@@ -30,6 +35,25 @@ public class UserService {
 	}
 
 	public User saveUser(User user) {
+		if(user.getUserId()==null) {
+			Account checking = new Account();
+			checking.setAccountName("Checking Account");
+			checking.getUsers().add(user);
+			user.getAccounts().add(checking);
+			accountRepo.save(checking);
+		}
+		if(user.getAddress()==null) {
+//			Address address = new Address();
+//			address.setAddressLine1("address line 1");
+//			address.setAddressLine2("address line 2");
+//			address.setCity("city");
+//			address.setCountry("country");
+//			address.setState("state");
+//			address.setZipCode("12345");
+//			address.setUser(user);
+//			address.setUserId(user.getUserId());
+//			user.setAddress(address);
+		} 
 		return userRepo.save(user);
 	}
 

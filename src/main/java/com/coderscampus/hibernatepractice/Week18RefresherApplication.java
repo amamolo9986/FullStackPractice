@@ -6,6 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.Query;
 
+import com.coderscampus.hibernatepractice.domain.Account;
 import com.coderscampus.hibernatepractice.domain.User;
 
 @SpringBootApplication
@@ -184,6 +185,39 @@ public class Week18RefresherApplication {
 	//								+ " left join fetch u.address")
 	//							Set<User> findAllOverridden();
 	
+	//Vid 12 - Saving Data Across Relationships
+	//We havent seen how to save an account to the user for example, or a transaction inside of an account,
+	//not just a user or account individually.
+	
+	//So what we'll do for demonstrations sake is whenever we create a brand new user, an account will also
+	//be created and saved to that user. How do we implement this? We need to figure out when we're 
+	//creating a new account. and we can see that we have a many to many relationship between users
+	//and accounts. So how do we populate this? Explained between 2 and 5 minutes. code below
+	
+	//		if(user.getUserId()==null) {
+	//		Account checking = new Account();
+	//		checking.setAccountName("Checking Account");
+	//		checking.getUsers().add(user);
+	//		user.getAccounts().add(checking);
+	//		accountRepo.save(checking);
+	//		}
+	
+	//This is also called a bidirectional relationship, accounts points to users and users points to 
+	//accounts.
+	
+	//Vid 13 - Cascade Types
+	//When we have information that we are saving within an object and a related entity, like user 
+	//and address for example, and we want to save together, we have to look at how they cascade.
+	
+	//Persist - So a new User object is created, an Address object is automatically created and saved into 
+	//the user object, then they are saved together
+	
+	//Merge - when you have an existing user and you add a new address or updating a new address and you issue
+	//a save. adding/updating child will save into the parent.
+	
+	//Remove - you have an existing user and set the address to null or delete it, then the user is deleted
+	
+	//Stuck at minute 19ish, my removal isnt working. not sure why, need to look into it some more 
 	
 }
 

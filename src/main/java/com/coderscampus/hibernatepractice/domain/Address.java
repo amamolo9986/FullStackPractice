@@ -19,7 +19,7 @@ public class Address {
 	private String addressLine1;
 	private String addressLine2;
 	private String city;
-	private String region;
+	private String state;
 	private String country;
 	private String zipCode;
 
@@ -63,12 +63,12 @@ public class Address {
 		this.city = city;
 	}
 
-	public String getRegion() {
-		return region;
+	public String getState() {
+		return state;
 	}
 
-	public void setRegion(String region) {
-		this.region = region;
+	public void setState(String state) {
+		this.state = state;
 	}
 
 	public String getCountry() {
