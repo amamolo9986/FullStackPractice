@@ -8,17 +8,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.coderscampus.hibernatepractice.domain.Account;
+import com.coderscampus.hibernatepractice.domain.Address;
 import com.coderscampus.hibernatepractice.domain.User;
+import com.coderscampus.hibernatepractice.service.AddressService;
 import com.coderscampus.hibernatepractice.service.UserService;
 
 @Controller
 public class UserController {
 	
 	private UserService userService;
-	
-	public UserController(UserService userService) {
+	private AddressService addressService;
+
+	public UserController(UserService userService, AddressService addressService) {
 		super();
 		this.userService = userService;
+		this.addressService = addressService;
 	}
 
 	@GetMapping("/users")
@@ -31,13 +36,18 @@ public class UserController {
 	@GetMapping("/users/{userId}")
 	public String findById(ModelMap model, @PathVariable Long userId) {
 		User user = userService.findById(userId);
+		Address address = addressService.findById(userId);
+		model.put("address", address);
 		model.put("user", user);
 		return "user";
 	}
 	
 	@PostMapping("/users/{userId}")
-	public String postUpdatedUser(User user) {
-		user = userService.saveUser(user);
+	public String postUpdatedUser(User user, @PathVariable Long userId) {
+		User foundUser = userService.findById(userId);
+		user.setAccounts(foundUser.getAccounts());
+		userService.saveUser(user);
+		
 		return "redirect:/users/" + user.getUserId();
 	}
 	

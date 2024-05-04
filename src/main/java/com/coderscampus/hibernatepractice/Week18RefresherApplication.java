@@ -1,13 +1,7 @@
 package com.coderscampus.hibernatepractice;
 
-import java.util.Set;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.data.jpa.repository.Query;
-
-import com.coderscampus.hibernatepractice.domain.Account;
-import com.coderscampus.hibernatepractice.domain.User;
 
 @SpringBootApplication
 public class Week18RefresherApplication {
@@ -217,7 +211,6 @@ public class Week18RefresherApplication {
 	
 	//Remove - you have an existing user and set the address to null or delete it, then the user is deleted
 	
-	//Stuck at minute 19ish, my removal isnt working. not sure why, need to look into it some more 
 	
 }
 

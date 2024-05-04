@@ -9,13 +9,31 @@
     <h1>[[${user.name}]]</h1>
     <form action="" method="post">
         <div>
+            Full Name: <input type="text" th:field="${user.name}" />
+        </div>
+        <div>
             Username: <input type="text" th:field="${user.username}" />
         </div>
         <div>
             Password: <input type="text" th:field="${user.password}" />
+        </div><br/>
+        <div>
+            Address Line 1: <input type="text" th:field="${address.addressLine1}" />
         </div>
         <div>
-            Full Name: <input type="text" th:field="${user.name}" />
+            Address Line 2: <input type="text" th:field="${address.addressLine2}" />
+        </div>
+        <div>
+            City: <input type="text" th:field="${address.city}" />
+        </div>
+        <div>
+            State: <input type="text" th:field="${address.state}" />
+        </div>
+        <div>
+            Country: <input type="text" th:field="${address.country}" />
+        </div>
+        <div>
+            Zip Code: <input type="text" th:field="${address.zipCode}" />
         </div><br/>
         <div>
             <input type="submit" value="Update Account" />
@@ -28,6 +46,7 @@
     <form action="/users" style="margin-top: 3px;">
         <button>Back</button>
     </form><br/>
+    <hr/>
     
 </body>
 

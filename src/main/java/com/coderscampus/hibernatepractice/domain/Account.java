@@ -3,6 +3,7 @@ package com.coderscampus.hibernatepractice.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,7 +21,7 @@ public class Account {
 	private String accountName;
 	@OneToMany(mappedBy = "account")
 	private List<Transaction> transactions = new ArrayList<>();
-	@ManyToMany(mappedBy = "accounts")
+	@ManyToMany(mappedBy = "accounts", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
 	private List<User> users = new ArrayList<>();
 
 	
