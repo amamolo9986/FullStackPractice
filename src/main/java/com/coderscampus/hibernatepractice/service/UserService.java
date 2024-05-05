@@ -11,6 +11,7 @@ import com.coderscampus.hibernatepractice.domain.Account;
 import com.coderscampus.hibernatepractice.domain.Address;
 import com.coderscampus.hibernatepractice.domain.User;
 import com.coderscampus.hibernatepractice.repository.AccountRepository;
+import com.coderscampus.hibernatepractice.repository.AddressRepository;
 import com.coderscampus.hibernatepractice.repository.UserRepository;
 
 @Service
@@ -18,11 +19,13 @@ public class UserService {
 	
 	private UserRepository userRepo;
 	private AccountRepository accountRepo;
+	private AddressRepository addressRepo;
 
-	public UserService(UserRepository userRepo, AccountRepository accountRepo) {
+	public UserService(UserRepository userRepo, AccountRepository accountRepo, AddressRepository addressRepo) {
 		super();
 		this.userRepo = userRepo;
 		this.accountRepo = accountRepo;
+		this.addressRepo = addressRepo;
 	}
 
 	public Set<User> findAllOverridden(){
@@ -42,6 +45,18 @@ public class UserService {
 			user.getAccounts().add(checking);
 			accountRepo.save(checking);
 		}
+//		if(user.getAddress()==null) {
+//			Address address = new Address();
+//			address.setAddressLine1("address line 1");
+//			address.setAddressLine2("address line 2");
+//			address.setCity("city");
+//			address.setCountry("country");
+//			address.setState("state");
+//			address.setZipCode("12345");
+//			address.setUser(user);
+//			address.setUserId(user.getUserId());
+//			user.setAddress(address);
+//		} 
 		return userRepo.save(user);
 	}
 
@@ -67,6 +82,13 @@ public class UserService {
 	
 	public User findOneUserByUsername(String username) {
 		return userRepo.findOneUserByUsername(username);
+	}
+
+	public User saveAddressToUser(User user, Address address) {
+		user.setAddress(address);
+		address.setUser(user);
+		addressRepo.save(address);
+		return userRepo.save(user);
 	}
 
 }

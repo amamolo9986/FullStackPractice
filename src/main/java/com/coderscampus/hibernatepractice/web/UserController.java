@@ -43,10 +43,12 @@ public class UserController {
 	}
 	
 	@PostMapping("/users/{userId}")
-	public String postUpdatedUser(User user, @PathVariable Long userId) {
+	public String postUpdatedUser(@PathVariable Long userId, User user, Address address) {
 		User foundUser = userService.findById(userId);
 		user.setAccounts(foundUser.getAccounts());
 		userService.saveUser(user);
+		
+		userService.saveAddressToUser(user, address);
 		
 		return "redirect:/users/" + user.getUserId();
 	}

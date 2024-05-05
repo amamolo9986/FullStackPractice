@@ -1,5 +1,6 @@
 package com.coderscampus.hibernatepractice.domain;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,7 +13,7 @@ import jakarta.persistence.OneToOne;
 public class Address {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long userId;
-	@OneToOne
+	@OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
 	@MapsId
 	@JoinColumn(name = "user_id")
 	private User user;
