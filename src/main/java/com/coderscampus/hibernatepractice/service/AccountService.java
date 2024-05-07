@@ -12,10 +12,12 @@ import com.coderscampus.hibernatepractice.repository.AccountRepository;
 public class AccountService {
 	
 	private AccountRepository accountRepo;
+	private UserService userService;
 
-	public AccountService(AccountRepository accountRepo) {
+	public AccountService(AccountRepository accountRepo, UserService userService) {
 		super();
 		this.accountRepo = accountRepo;
+		this.userService = userService;
 	}
 
 	public Account findById(Long userId) {
@@ -23,7 +25,9 @@ public class AccountService {
 		return accountOpt.orElse(new Account());
 	}
 
-	public Account saveAccount(Account account) {
+	public Account saveAccount(Account account, User user) {
+		user.getAccounts().add(account);
+		account.getUsers().add(user);
 		return accountRepo.save(account);
 	}
 

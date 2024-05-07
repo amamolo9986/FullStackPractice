@@ -34,7 +34,7 @@ public class AccountController {
 	public String saveAccount(@PathVariable Long userId, Account account) {
 		User user = userService.findById(userId);
 		user.setAccounts(user.getAccounts());
-		account = accountService.saveAccount(account);
+		account = accountService.saveAccount(account, user);
 		return "redirect:/users/" + user.getUserId();
 	}
 
