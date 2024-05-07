@@ -1,5 +1,6 @@
 package com.coderscampus.hibernatepractice.web;
 
+import java.util.Map;
 import java.util.Set;
 
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.coderscampus.hibernatepractice.domain.Account;
 import com.coderscampus.hibernatepractice.domain.Address;
 import com.coderscampus.hibernatepractice.domain.User;
+import com.coderscampus.hibernatepractice.service.AccountService;
 import com.coderscampus.hibernatepractice.service.AddressService;
 import com.coderscampus.hibernatepractice.service.UserService;
 
@@ -19,11 +21,13 @@ public class UserController {
 	
 	private UserService userService;
 	private AddressService addressService;
+	private AccountService accountService;
 
-	public UserController(UserService userService, AddressService addressService) {
+	public UserController(UserService userService, AddressService addressService, AccountService accountService) {
 		super();
 		this.userService = userService;
 		this.addressService = addressService;
+		this.accountService = accountService;
 	}
 
 	@GetMapping("/users")
@@ -49,7 +53,6 @@ public class UserController {
 		userService.saveUser(user);
 		
 		userService.saveAddressToUser(user, address);
-		
 		return "redirect:/users/" + user.getUserId();
 	}
 	

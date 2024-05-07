@@ -43,6 +43,9 @@
     style="margin-top: 3px;">
         <input type="submit" value="Delete User">
     </form>
+    <form th:action="@{/users/{userId}/accounts(userId=${user.userId})}" style="margin-top: 3px;">
+        <button>Create New Account</button>
+    </form><br/>
     <form action="/users" style="margin-top: 3px;">
         <button>Back</button>
     </form><br/>
