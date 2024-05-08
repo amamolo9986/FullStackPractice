@@ -42,14 +42,18 @@
     <form th:action="@{/users/{userId}/delete(userId=${user.userId})}" method="post" 
     style="margin-top: 3px;">
         <input type="submit" value="Delete User">
-    </form>
+    </form><br/>
+    <hr/><br/>
+    <div th:each="account: ${user.accounts}">
+        <span th:text="${account.accountName}"></span>
+    </div><br/>
     <form th:action="@{/users/{userId}/accounts(userId=${user.userId})}" style="margin-top: 3px;">
         <button>Create New Account</button>
     </form><br/>
+    <hr/><br/>
     <form action="/users" style="margin-top: 3px;">
         <button>Back</button>
     </form><br/>
-    <hr/>
     
 </body>
 

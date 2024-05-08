@@ -45,18 +45,6 @@ public class UserService {
 			user.getAccounts().add(checking);
 			accountRepo.save(checking);
 		}
-//		if(user.getAddress()==null) {
-//			Address address = new Address();
-//			address.setAddressLine1("address line 1");
-//			address.setAddressLine2("address line 2");
-//			address.setCity("city");
-//			address.setCountry("country");
-//			address.setState("state");
-//			address.setZipCode("12345");
-//			address.setUser(user);
-//			address.setUserId(user.getUserId());
-//			user.setAddress(address);
-//		} 
 		return userRepo.save(user);
 	}
 
