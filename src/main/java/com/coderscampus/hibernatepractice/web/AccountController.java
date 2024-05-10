@@ -24,18 +24,25 @@ public class AccountController {
 	}
 
 	@GetMapping("/users/{userId}/accounts")
-	public String getAccount(ModelMap model, @PathVariable Long userId) {
+	public String getNewAccount(ModelMap model, @PathVariable Long userId) {
 		Account account = accountService.findById(userId);
 		model.put("account", account);
 		return "account";
 	}
 	
 	@PostMapping("/users/{userId}/accounts")
-	public String saveAccount(@PathVariable Long userId, Account account) {
+	public String createAccount(@PathVariable Long userId, Account account) {
 		User user = userService.findById(userId);
 		user.setAccounts(user.getAccounts());
-		account = accountService.saveAccount(account, user);
+		account = accountService.createAccount(account, user);
 		return "redirect:/users/" + user.getUserId();
+	}
+	
+	@GetMapping("/users/{userId}/accounts/{accountId}")
+	public String updateAccount(ModelMap model, @PathVariable Long accountId) {
+		Account account = accountService.findById(accountId);
+		model.put("account", account);
+		return "account";
 	}
 
 }

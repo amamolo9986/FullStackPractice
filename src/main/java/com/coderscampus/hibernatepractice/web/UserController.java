@@ -1,6 +1,5 @@
 package com.coderscampus.hibernatepractice.web;
 
-import java.util.Map;
 import java.util.Set;
 
 import org.springframework.stereotype.Controller;
@@ -9,10 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.coderscampus.hibernatepractice.domain.Account;
 import com.coderscampus.hibernatepractice.domain.Address;
 import com.coderscampus.hibernatepractice.domain.User;
-import com.coderscampus.hibernatepractice.service.AccountService;
 import com.coderscampus.hibernatepractice.service.AddressService;
 import com.coderscampus.hibernatepractice.service.UserService;
 
@@ -21,13 +18,11 @@ public class UserController {
 	
 	private UserService userService;
 	private AddressService addressService;
-	private AccountService accountService;
 
-	public UserController(UserService userService, AddressService addressService, AccountService accountService) {
+	public UserController(UserService userService, AddressService addressService) {
 		super();
 		this.userService = userService;
 		this.addressService = addressService;
-		this.accountService = accountService;
 	}
 
 	@GetMapping("/users")

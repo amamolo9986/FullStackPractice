@@ -38,13 +38,13 @@ public class UserService {
 	}
 
 	public User saveUser(User user) {
-		if(user.getUserId()==null) {
-			Account checking = new Account();
-			checking.setAccountName("Checking Account");
-			checking.getUsers().add(user);
-			user.getAccounts().add(checking);
-			accountRepo.save(checking);
-		}
+//		if(user.getUserId()==null) {
+//			Account checking = new Account();
+//			checking.setAccountName("Account 1");
+//			checking.getUsers().add(user);
+//			user.getAccounts().add(checking);
+//			accountRepo.save(checking);
+//		}
 		return userRepo.save(user);
 	}
 

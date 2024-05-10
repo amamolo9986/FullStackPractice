@@ -45,7 +45,8 @@
     </form><br/>
     <hr/><br/>
     <div th:each="account: ${user.accounts}">
-        <span th:text="${account.accountName}"></span>
+        <a th:href="@{/users/{userId}/accounts/{accountId}(userId=${user.userId}, accountId=${account.accountId})}">
+            [[${account.accountName}]]</a>
     </div><br/>
     <form th:action="@{/users/{userId}/accounts(userId=${user.userId})}" style="margin-top: 3px;">
         <button>Create New Account</button>
