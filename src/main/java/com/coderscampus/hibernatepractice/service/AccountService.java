@@ -23,10 +23,15 @@ public class AccountService {
 		return accountOpt.orElse(new Account());
 	}
 
-	public Account createAccount(Account account, User user) {
+	public Account saveNewAccount(Account account, User user) {
 		user.getAccounts().add(account);
 		account.getUsers().add(user);
 		return accountRepo.save(account);
+	}
+
+	public Account updateAccount(Account account) {
+		return accountRepo.save(account);
+		
 	}
 
 

@@ -31,10 +31,10 @@ public class AccountController {
 	}
 	
 	@PostMapping("/users/{userId}/accounts")
-	public String createAccount(@PathVariable Long userId, Account account) {
+	public String saveNewAccount(@PathVariable Long userId, Account account) {
 		User user = userService.findById(userId);
 		user.setAccounts(user.getAccounts());
-		account = accountService.createAccount(account, user);
+		account = accountService.saveNewAccount(account, user);
 		return "redirect:/users/" + user.getUserId();
 	}
 	
@@ -44,5 +44,22 @@ public class AccountController {
 		model.put("account", account);
 		return "account";
 	}
+	
+	@PostMapping("/users/{userId}/accounts/{accountId}")
+	public String updateAccount(@PathVariable Long userId, Account account) {
+		User user = userService.findById(userId);
+		 userService.saveUser(user);
+		 accountService.updateAccount(account);
+		return "redirect:/users/" + user.getUserId();
+	}
 
 }
+
+
+
+
+
+
+
+
+
