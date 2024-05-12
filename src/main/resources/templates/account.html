@@ -4,14 +4,17 @@
     <title>Account</title>
 </head>
 <body>
-    <h1>Create a New Account</h1>
+    <h1>[[${account.accountName}]]</h1>
     <form action="" method="post">
         <div>
             Account Name: <input type="text" th:field="${account.accountName}" />
         </div> <br/>
         <div>
             <input type="submit" value="Save Account" />
-        </div>
+        </div><br/>
+        <form action="/users">
+            <button>Back</button>
+        </form><br/>
     </form>
 </body>
 </html>
