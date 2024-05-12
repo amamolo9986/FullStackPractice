@@ -7,7 +7,6 @@ import java.util.Set;
 
 import org.springframework.stereotype.Service;
 
-import com.coderscampus.hibernatepractice.domain.Account;
 import com.coderscampus.hibernatepractice.domain.Address;
 import com.coderscampus.hibernatepractice.domain.User;
 import com.coderscampus.hibernatepractice.repository.AccountRepository;
@@ -18,13 +17,11 @@ import com.coderscampus.hibernatepractice.repository.UserRepository;
 public class UserService {
 	
 	private UserRepository userRepo;
-	private AccountRepository accountRepo;
 	private AddressRepository addressRepo;
 
-	public UserService(UserRepository userRepo, AccountRepository accountRepo, AddressRepository addressRepo) {
+	public UserService(UserRepository userRepo, AddressRepository addressRepo) {
 		super();
 		this.userRepo = userRepo;
-		this.accountRepo = accountRepo;
 		this.addressRepo = addressRepo;
 	}
 

@@ -25,7 +25,8 @@ public class AccountController {
 
 	@GetMapping("/users/{userId}/accounts")
 	public String getNewAccount(ModelMap model, @PathVariable Long userId) {
-		Account account = accountService.findById(userId);
+		Account account = new Account();
+		account.setAccountName("Test Account Name");
 		model.put("account", account);
 		return "account";
 	}
