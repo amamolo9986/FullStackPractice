@@ -40,9 +40,11 @@ public class AccountController {
 	}
 	
 	@GetMapping("/users/{userId}/accounts/{accountId}")
-	public String updateAccount(ModelMap model, @PathVariable Long accountId) {
+	public String updateAccount(ModelMap model, @PathVariable Long accountId, @PathVariable Long userId) {
 		Account account = accountService.findById(accountId);
+		User user = userService.findById(userId);
 		model.put("account", account);
+		model.put("user", user);
 		return "account";
 	}
 	
@@ -53,7 +55,19 @@ public class AccountController {
 		 accountService.updateAccount(account);
 		return "redirect:/users/" + user.getUserId();
 	}
+	
+	@PostMapping("/users/{userId}/account/{accountId}/delete")
+	public String deleteBankAccount(@PathVariable Long accountId, User user) {
+		Account account = accountService.findById(accountId);
+	    // 1. Remove account from all associated users
+	    for (User foundUser : account.getUsers()) {
+	        foundUser.getAccounts().remove(account); // Bidirectional relationship management
+	    }
+	    // 2. Delete the account (JPA will handle foreign key in join table)
+	    accountService.deleteBankAccount(account); 
 
+	    return "redirect:/users/" + user.getUserId();
+	}
 }
 
 

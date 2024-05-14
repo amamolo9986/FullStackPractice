@@ -34,6 +34,10 @@ public class AccountService {
 		
 	}
 
+	public void deleteBankAccount(Account account) {
+		accountRepo.delete(account);
+	}
+
 
 
 }
