@@ -65,7 +65,6 @@ public class AccountController {
 	    }
 	    // 2. Delete the account (JPA will handle foreign key in join table)
 	    accountService.deleteBankAccount(account); 
-
 	    return "redirect:/users/" + user.getUserId();
 	}
 }
