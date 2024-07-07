@@ -13,7 +13,7 @@
             <input type="submit" value="Save Account" />
         </div>
     </form>
-    <form th:action="@{/users/{userId}/account/{accountId}/delete(userId=${user.userId}, 
+    <form th:action="@{/users/{userId}/accounts/{accountId}/delete(userId=${user.userId}, 
             accountId=${account.accountId})}" method="post">
         <input type="submit" value="Delete Account">
     </form><br/>
