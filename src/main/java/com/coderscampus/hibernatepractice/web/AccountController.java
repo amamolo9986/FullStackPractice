@@ -27,7 +27,9 @@ public class AccountController {
 	public String getNewAccount(ModelMap model, @PathVariable Long userId) {
 		Account account = new Account();
 		account.setAccountName("Bank Account");
+		User user = userService.findById(userId);
 		model.put("account", account);
+		model.put("user", user);
 		return "account";
 	}
 	
